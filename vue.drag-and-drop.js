@@ -82,11 +82,11 @@
                 el.vm.handleDragStart = function (e) {
                     e.target.classList.add('dragging');
                     DragAndDrop.vm._dragSrcEl = e.target;
-                    //console.log('handleDragStart', DragAndDrop.vm)
+                    console.log('handleDragStart', DragAndDrop.vm)
                     e.dataTransfer.effectAllowed = 'move';
                     // Need to set to something or else drag doesn't start
                     e.dataTransfer.setData('text', '*');
-                    //console.log(params.dragStart)
+                    console.log(params.dragStart)
                     if (typeof params.dragStart === 'function') {
                         params.dragStart.call(this, e.target, e);
                     }
@@ -137,8 +137,8 @@
                     // Don't do anything if dropping the same column we're dragging.
                     if (DragAndDrop.vm._dragSrcEl != e.target) {
                         if (typeof params.drop === 'function') {
-                            var targetElm = findParent(e.target, function (elm) { return elm.getAttribute('draggable') == 'true'});
-                            //console.log('targetElm', targetElm)
+                            var targetElm = e.target.getAttribute('draggable') == 'true' ? e.target: findParent(e.target, function (elm) { return elm.getAttribute('draggable') == 'true'});
+                            console.log('targetElm', targetElm)
                             params.drop.call(this, DragAndDrop.vm._dragSrcEl, targetElm, e);
                         }
                     }
@@ -181,14 +181,11 @@
 
     if (typeof exports == "object") {
         module.exports = DragAndDrop
-        //console.log('exports')
     } else if (typeof define == "function" && define.amd) {
-        //console.log('define')
         define('vue-drag-and-drop', [], function () {
             return DragAndDrop
         })
     } else if (window.Vue) {
-        //console.log('window.Vue')
         window.DragAndDrop = DragAndDrop
         Vue.use(DragAndDrop)
     }
