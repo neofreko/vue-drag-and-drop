@@ -1,5 +1,5 @@
 {
-  "name": "vue-drag-and-drop",
+  "name": "@neofreko/vue-drag-and-drop",
   "version": "2.2.0",
   "description": "A for Vue.js directive for providing drag and drop capabilities to elements and data.",
   "homepage": "http://ohdoylerules.com",
